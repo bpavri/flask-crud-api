@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  flaskpersistent:
+    image: flaskpersistent
+    build:
+      context: ./app
+      dockerfile: ./Dockerfile
+    depends_on:
+      - db
+    ports:
+      - 5005:5005
+    expose:
+    - 5005
+  db:
+    image: mysql:8.0.28
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root123
+      - MYSQL_DATABASE=flaskpersistent
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 33061:3306
