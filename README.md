@@ -1,3 +1,6 @@
+To get started, simply run docker-compose up --build
+
+
 PROJECTS
 
 GET
